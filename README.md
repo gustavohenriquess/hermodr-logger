@@ -24,3 +24,14 @@ download the hermodr.js file and import it into your files.
 ``
 import hermodr from 'YOUR_PATH';
 ``
+
+to log into the console and the database use log types like the one below.
+``
+hermodr.info (MARKER, CONTEUDO);
+``
+
+log types:
+- log
+- debug
+- error
+- warn
