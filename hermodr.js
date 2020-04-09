@@ -1,6 +1,6 @@
 /*
  *
- *   Bragi Logger
+ *   Hermodr Logger
  *
  *
  *   Console Helpers: 
