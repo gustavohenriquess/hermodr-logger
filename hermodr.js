@@ -1,6 +1,6 @@
 /*
  *
- *   Hermodr Logger
+ *   Bragi Logger
  *
  *
  *   Console Helpers: 
@@ -49,13 +49,8 @@ let setttings = {
     }
 }
 
-let Hermodr = {};
 
-
-Hermodr.log = function (marker, ...message) {
-
-    let level = 'LOG'
-    let date = new Date().toISOString();
+function makeLog(level, marker, date, message){
 
     let levelBgc = setttings[level]['levelBgc'];
     let levelColor = setttings[level]['levelColor'];
@@ -63,45 +58,46 @@ Hermodr.log = function (marker, ...message) {
     let messageColor = setttings[level]['message'];
 
     console.log(`%c ${level} %c    ${marker}  %c  ${date}    %c${message}`, `background: ${levelBgc}; color: ${levelColor}`, `color: white`, `color: ${dateColor}`, `color: ${messageColor}`);
+}
+
+function insertDatabase(){
+
+
+}
+
+let Hermodr = {};
+
+Hermodr.log = function (marker, ...message) {
+
+    let date = new Date().toISOString();
+
+    makeLog("LOG", marker, date, message);
 }
 
 Hermodr.debug = function (marker, ...message) {
 
-    let level = 'DEBUG'
     let date = new Date().toISOString();
 
-    let levelBgc = setttings[level]['levelBgc'];
-    let levelColor = setttings[level]['levelColor'];
-    let dateColor = setttings[level]['date'];
-    let messageColor = setttings[level]['message'];
-
-    console.log(`%c ${level} %c    ${marker}  %c  ${date}    %c${message}`, `background: ${levelBgc}; color: ${levelColor}`, `color: white`, `color: ${dateColor}`, `color: ${messageColor}`);
+    makeLog("DEBUG", marker, date, message);
 }
 
 Hermodr.warn = function (marker, ...message) {
 
-    let level = 'WARN'
     let date = new Date().toISOString();
 
-    let levelBgc = setttings[level]['levelBgc'];
-    let levelColor = setttings[level]['levelColor'];
-    let dateColor = setttings[level]['date'];
-    let messageColor = setttings[level]['message'];
-
-    console.log(`%c ${level} %c    ${marker}  %c  ${date}    %c${message}`, `background: ${levelBgc}; color: ${levelColor}`, `color: white`, `color: ${dateColor}`, `color: ${messageColor}`);
+    makeLog("WARN", marker, date, message);
 }
 
 Hermodr.error = function (marker, ...message) {
 
-    let level = 'ERROR'
     let date = new Date().toISOString();
 
-    let levelBgc = setttings[level]['levelBgc'];
-    let levelColor = setttings[level]['levelColor'];
-    let dateColor = setttings[level]['date'];
-    let messageColor = setttings[level]['message'];
-
-    console.log(`%c ${level} %c    ${marker}  %c  ${date}    %c${message}`, `background: ${levelBgc}; color: ${levelColor}`, `color: white`, `color: ${dateColor}`, `color: ${messageColor}`);
+    makeLog("ERROR", marker, date, message);
 }
+
+Hermodr.db = function (marker, ...message){
+    console.log("Gustavo");
+}
+
 
 export default Hermodr;
