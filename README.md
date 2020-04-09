@@ -36,3 +36,8 @@ log types:
 - debug
 - error
 - warn
+
+to log only to the database
+``
+hermodr.db (MARKER, CONTENT);
+``
