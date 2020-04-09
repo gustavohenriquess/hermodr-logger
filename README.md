@@ -38,6 +38,7 @@ log types:
 - warn
 
 to log only to the database
+
 ``
 hermodr.db (MARKER, CONTENT);
 ``
