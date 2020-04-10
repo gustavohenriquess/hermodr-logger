@@ -60,9 +60,16 @@ function makeLog(level, marker, date, message){
     console.log(`%c ${level} %c    ${marker}  %c  ${date}    %c${message}`, `background: ${levelBgc}; color: ${levelColor}`, `color: white`, `color: ${dateColor}`, `color: ${messageColor}`);
 }
 
-function insertDatabase(){
+function insertDatabase(level, marker, date, message){
 
+    var object = {
+        level : level,
+        marker: marker,
+        date: date,
+        message: message
+    };
 
+    console.log(object);    
 }
 
 let Hermodr = {};
