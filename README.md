@@ -21,9 +21,6 @@ It logs into the colored CMD and also transmits it to a mongoBD database, it has
 - express: ^4.17.1
 - mongoose:^5.9.7
 
-## Configure the Database
-Hermodr uses mongoDB and MVC architecture by default, so considering this information and imagining that hermodr.js is inside the "SRC" folder and your bank connection is on the next path './models/connection.js
-
 ## How to use
 
 download the hermodr.js file and import it into your files.
