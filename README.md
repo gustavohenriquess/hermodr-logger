@@ -6,7 +6,7 @@ I'had
 
 The Hermodr log was created to log on to the console and to a database at the same time.
 
-Foi desenvolvidos 2 formas para criar seus logs, backend e frontend, chamadas respectivamentes de hermodr-cmd e hermodr-browser.
+Two ways were developed to create your logs, backend and frontend, respectively called hermodr-cmd and hermodr-browser.
 
 ### Hermordr-cmd
 It logs into the colored CMD and also transmits it to a mongoBD database, it has an API to retrieve data from the database.
