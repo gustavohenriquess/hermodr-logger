@@ -37,7 +37,7 @@ let setttings = {
     DEBUG: {
         levelBgc: definitions.colors.yellow,
         levelColor: definitions.colors.red,
-        date: definitions.colors.orange,
+        date: definitions.colors.yellow,
         message: definitions.colors.white
     },
     WARN: {

@@ -57,4 +57,10 @@ npm install
 ``
 
 
-**Remember** to change the connection string in the index.js file (line 7) 
+**Remember** to change the connection string in the index.js file (line 7)
+
+## Images
+
+![Hermodr-browser](images/browser.png)
+
+![Hermodr-cmd](images/cmd.png)
