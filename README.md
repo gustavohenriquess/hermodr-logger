@@ -61,6 +61,6 @@ npm install
 
 ## Images
 
-![Hermodr-browser](images/browser.png)
+![Hermodr-browser](Images/browser.png)
 
-![Hermodr-cmd](images/cmd.png)
+![Hermodr-cmd](Images/cmd.png)
