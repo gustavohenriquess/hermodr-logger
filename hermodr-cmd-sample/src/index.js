@@ -4,7 +4,7 @@ const { Hermodr, HermodrRoutes} = require('./hermodr-cmd');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://hermodr:testhermodr@cluster0-10pgo.gcp.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('YOUR_CONNECTION_STRING', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

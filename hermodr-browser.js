@@ -7,7 +7,7 @@
  *                       -   http://voidcanvas.com/make-console-log-output-colorful-and-stylish-in-browser-node/
  *                       -   https://imasters.com.br/desenvolvimento/como-criar-um-console-colorido-usando-nodejs
  *
- *   Comando para CMD
+ *   Commands for CMD
  *                       -   console.log('\x1b[42m\x1b[37m%s\x1b[0m%s\x1b[33m%s\x1b[0m', ' LOG ', '  INDEX.JS  ', '  date  ', 'SERVER ON')
  *                       -   https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
  * 

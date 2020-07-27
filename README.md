@@ -46,3 +46,14 @@ to log only to the database
 ``
 hermodr.db (MARKER, CONTENT);
 ``
+
+
+### How to use the sample
+
+run to install dependencies 
+
+``
+npm install
+``
+**Remember**
+replace it with your Atlas MongoDB connection string in the index.js file (LINE 7)
