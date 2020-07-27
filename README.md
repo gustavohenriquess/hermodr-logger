@@ -18,7 +18,7 @@ It logs into the colored CMD and also transmits it to a mongoBD database, it has
 - MongoDB
 
 #### Dependencies
-- express: ^4.17.1
+- express: ^4.17.1 (**for sample only**)
 - mongoose:^5.9.7
 
 ## How to use
