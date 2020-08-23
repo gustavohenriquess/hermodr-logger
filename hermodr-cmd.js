@@ -81,10 +81,9 @@ function insertDatabase(level, marker, date, message) {
     Log.create(object);
 }
 
-function makeLog(level, marker, message) {
+function makeLog(level, marker, date, message) {
 
     const style = setttings[level];
-    const date = formattedDateTime(new Date());
 
     console.log(`${style}`, ` ${level} `, ` ${marker} `, ` ${date} `, ` ${message} `);
 
@@ -100,8 +99,6 @@ Hermodr.log = function (marker, ...message) {
     let level = "LOG";
 
     makeLog(level, marker, date, message);
-
-    insertDatabase(level, marker, date, message);
 };
 
 Hermodr.debug = function (marker, ...message) {
@@ -110,8 +107,6 @@ Hermodr.debug = function (marker, ...message) {
     let level = "DEBUG";
 
     makeLog(level, marker, date, message);
-
-    insertDatabase(level, marker, date, message);
 };
 
 Hermodr.warn = function (marker, ...message) {
@@ -120,8 +115,6 @@ Hermodr.warn = function (marker, ...message) {
     let level = "WARN";
 
     makeLog(level, marker, date, message);
-
-    insertDatabase(level, marker, date, message);
 };
 
 Hermodr.error = function (marker, ...message) {
@@ -131,7 +124,6 @@ Hermodr.error = function (marker, ...message) {
 
     makeLog(level, marker, date, message);
 
-    insertDatabase(level, marker, date, message);
 };
 
 Hermodr.db = function (level, marker, ...message) {
