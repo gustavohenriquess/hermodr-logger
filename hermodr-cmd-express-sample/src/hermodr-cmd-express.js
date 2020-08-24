@@ -15,7 +15,6 @@
 
 
 // IMPORTS
-const mongoose = require('mongoose');
 const {
     Router
 } = require('express');
@@ -23,17 +22,31 @@ const {
 //Configs
 const routes = Router();
 
+var hasMongoose;
+var Log;
 
-// MongoDB Configs
-const logSchema = new mongoose.Schema({
+try {
+    const mongoose = require('mongoose');
 
-    level: String,
-    marker: String,
-    date: String,
-    message: []
-});
+    // MongoDB Configs
+    const logSchema = new mongoose.Schema({
 
-const Log = mongoose.model('Log', logSchema);
+        level: String,
+        marker: String,
+        date: String,
+        message: []
+    });
+
+    Log = mongoose.model('Log', logSchema);
+
+    hasMongoose = true;
+} catch (e) {
+
+    let date = formattedDateTime(new Date());
+
+    console.log(`\x1b[41m%s\x1b[0m%s\x1b[33m%s\x1b[0m`, ` ERROR `, ` hermodr-cmd.js | LINE 47 `, ` ${date} `, ` Without MONGOOSE installation`);
+    hasMongoose = false;
+}
 
 // Hermodr Configs
 let setttings = {
@@ -71,6 +84,8 @@ function formattedDateTime(date) {
 
 function insertDatabase(level, marker, date, message) {
 
+    if (!hasMongoose) return;
+    
     var object = {
         level: level,
         marker: marker,

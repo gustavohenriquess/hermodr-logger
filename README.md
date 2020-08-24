@@ -49,6 +49,7 @@ hermodr.db (MARKER, CONTENT);
 
 
 ### How to use the sample
+I did 2 examples, one with express and the other with restify, feel free to use whatever you think is best!
 
 run to install dependencies 
 
@@ -56,7 +57,10 @@ run to install dependencies
 npm install
 ``
 
-
+to run the sample
+``
+node .\src\index.js
+``
 **Remember** to change the connection string in the index.js file (line 7)
 
 ## Images

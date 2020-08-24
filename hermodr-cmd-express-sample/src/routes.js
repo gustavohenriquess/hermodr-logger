@@ -2,6 +2,7 @@ const { Router} = require('express');
 
 const routes = Router();
 
-//routes.get('/devs',devControler.index);
+// ALL YOUR ROTES HERE!
+//routes.get('/devs',YOUR_FUNCTION);
 
 module.exports = routes;
