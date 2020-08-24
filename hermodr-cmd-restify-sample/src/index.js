@@ -12,7 +12,7 @@ const {
 try {
   const mongoose = require('mongoose');
 
-  mongoose.connect('mongodb+srv://hermodr:hermodr123@cluster0.10pgo.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+  mongoose.connect('YOUR_STRING_CONNECTION_HERE', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });

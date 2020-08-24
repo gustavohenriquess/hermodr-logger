@@ -61,7 +61,7 @@ to run the sample
 ``
 node .\src\index.js
 ``
-**Remember** to change the connection string in the index.js file (line 7)
+**Remember** to change the connection string in the index.js file (line 9 for express-sample or line 15 for restify-sample )
 
 ## Images
 
