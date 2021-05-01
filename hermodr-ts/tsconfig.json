@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    //"target": "es2016",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "inlineSourceMap": true,
+    "watch": false,
+    "experimentalDecorators": true,
+    "incremental": true,
+    "outDir": "dist",
+    "esModuleInterop": true
+  },
+  "exclude": [
+    ".vscode",
+    ".docker",
+    "dist",
+    "content",
+    "node_modules",
+    "typings/*/.d.ts"
+  ],
+}

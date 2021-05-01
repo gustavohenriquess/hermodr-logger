@@ -42,7 +42,7 @@ try {
 }
 
 // Hermodr Configs
-let setttings = {
+let settings = {
     LOG: '\x1b[42m\x1b[37m%s\x1b[0m%s\x1b[33m%s\x1b[0m',
     DEBUG: '\x1b[43m\x1b[31m%s\x1b[0m%s\x1b[33m%s\x1b[0m',
     WARN: '\x1b[45m%s\x1b[0m%s\x1b[33m%s\x1b[0m',
@@ -91,7 +91,7 @@ function insertDatabase(level, marker, date, message) {
 
 function makeLog(level, marker, date, message) {
 
-    const style = setttings[level];
+    const style = settings[level];
 
     console.log(`${style}`, ` ${level} `, ` ${marker} `, ` ${date} `, ` ${message} `);
 
@@ -145,11 +145,11 @@ Hermodr.db = function (level, marker, ...message) {
 const rout = async function (req, res, next) {
 
     const search = req.query;
-    const searchables = ['level', 'date', 'marker'];
+    const searchable = ['level', 'date', 'marker'];
 
     for (var i in search) {
 
-        if (!searchables.includes(i)) {
+        if (!searchable.includes(i)) {
             delete search[i];
         }
     }
