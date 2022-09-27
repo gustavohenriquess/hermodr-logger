@@ -1,4 +1,7 @@
-let hasMongoose: boolean, Log, mongoose;
+let hasDatabase: boolean,
+  Log,
+  mongoose,
+  stackEnable = false;
 
 const settings = {
   LOG: "\x1b[42m\x1b[37m%s\x1b[0m%s\x1b[33m%s\x1b[0m",
@@ -42,10 +45,15 @@ try {
     marker: String,
     date: String,
     messages: [],
+    stack: String,
   });
 
   Log = mongoose.model("Log", logSchema);
-  hasMongoose = true;
+  hasDatabase = true;
+
+  if (!process.env.MONGO_URI) {
+    throw new Error("MONGO_URI NOT FOUND");
+  }
 } catch (error) {
   let date = formattedDateTime(new Date());
   console.log(
@@ -53,9 +61,9 @@ try {
     ` ERROR `,
     ` hermodr.ts`,
     ` ${date} `,
-    ` Without MONGOOSE installation`
+    error.message
   );
-  hasMongoose = false;
+  hasDatabase = false;
 }
 
 function makeLog(
@@ -73,6 +81,8 @@ function makeLog(
     ` ${date} `,
     ` ${messages} `
   );
+  if (stackEnable || level == "DEBUG" || level == "ERROR")
+    console.log(getStack());
 
   insertDatabase(level, marker, date, messages);
 }
@@ -83,59 +93,91 @@ function insertDatabase(
   date: string,
   messages: string[]
 ) {
-  if (!hasMongoose) return;
+  if (!hasDatabase) return;
 
-  var object = {
+  const object = {
     level: level,
     marker: marker,
     date: date,
     messages: messages,
   };
 
-    mongoose
-      .connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-      .then(async () => {
-        await Log.create(object);
-        mongoose.connection.close();
-      })
-      .catch((error) => {
-        console.log(
-          `\x1b[41m%s\x1b[0m%s\x1b[33m%s\x1b[0m`,
-          ` ERROR `,
-          ` hermodr.ts`,
-          ` ${date} `,
-          ` ${error}`
-        );
-      });
+  if (stackEnable || level == "DEBUG" || level == "ERROR")
+    object["stack"] = getStack();
+
+  mongoose
+    .connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(async () => {
+      await Log.create(object);
+      mongoose.connection.close();
+    })
+    .catch((error) => {
+      mongoose.connection.close();
+      const fileName = __filename.split(/[\\/]/).pop();
+      console.log(error.stack);
+      console.log(
+        `\x1b[41m%s\x1b[0m%s\x1b[33m%s\x1b[0m`,
+        ` ERROR `,
+        ` ${fileName}`,
+        ` ${date} `,
+        ` ${error}`
+      );
+    });
 }
 
-var Hermodr = {
-  log: (marker: string, ...messages) => {
+const getMarker = () => {
+  const stack = new Error().stack;
+  const stackArray = stack.split("\n");
+  const caller = stackArray[3];
+  const callerArray = caller.split("/");
+  const file = callerArray[callerArray.length - 1];
+  const fileArray = file.split(":");
+  const marker = fileArray[0];
+
+  return marker;
+};
+
+const getStack = () => {
+  const stack = new Error().stack;
+  const stackArray = stack.split("\n");
+  stackArray.shift();
+  stackArray.shift();
+  stackArray.shift();
+  stackArray.shift();
+
+  return stackArray.join("\n");
+};
+
+const Hermodr = {
+  log: (...messages) => {
     let date = formattedDateTime(new Date());
     let level = "LOG";
 
-    makeLog(level, marker, date, messages);
+    makeLog(level, getMarker(), date, messages);
   },
-  debug: (marker: string, ...messages) => {
+  debug: (...messages) => {
     let date = formattedDateTime(new Date());
     let level = "DEBUG";
 
-    makeLog(level, marker, date, messages);
+    makeLog(level, getMarker(), date, messages);
   },
-  warn: (marker: string, ...messages) => {
+  warn: (...messages) => {
     let date = formattedDateTime(new Date());
     let level = "WARN";
 
-    makeLog(level, marker, date, messages);
+    makeLog(level, getMarker(), date, messages);
   },
-  error: (marker: string, ...messages) => {
+  error: (...messages) => {
     let date = formattedDateTime(new Date());
     let level = "ERROR";
 
-    makeLog(level, marker, date, messages);
+    makeLog(level, getMarker(), date, messages);
+  },
+  config: (options) => {
+    if (options.stack) stackEnable = true;
   },
 };
 
