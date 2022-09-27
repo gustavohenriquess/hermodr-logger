@@ -1,5 +1,5 @@
 require("dotenv").config();
-const Hermodr = require("./hermodr");
+const Hermodr = require("hermodr-logger");
 Hermodr.config({ stack: false });
 import express from "express";
 
