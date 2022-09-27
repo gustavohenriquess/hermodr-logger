@@ -1,0 +1,20 @@
+{
+  "name": "hermodr-logger",
+  "version": "1.0.0",
+  "description": "easy log to developers",
+  "main": "./dist/hermodr.js",
+  "author": "Gustavo Henrique",
+  "keywords": [],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "mongoose": "^5.12.7",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "@types/node": "^18.7.23"
+  }
+}
