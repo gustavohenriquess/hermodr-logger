@@ -1,70 +1,74 @@
 # Hermodr Logger
 
-Hermodr, the messenger of the Norse gods, came to help you make your records easier to understand and a little more colorful.
+Hermodr, the messenger of the Norse gods, has come to help you make your logs easier to understand and a little more colorful.
 
-I'had 
+The Hermodr log was created to make logs on to the console and to a database at the same time.
 
-The Hermodr log was created to log on to the console and to a database at the same time.
+Two ways were developed to create your logs, backend and frontend, respectively called hermodr-logger.
 
-Two ways were developed to create your logs, backend and frontend, respectively called hermodr-cmd and hermodr-browser.
+### Improvements
 
-### Hermordr-cmd
-It logs into the colored CMD and also transmits it to a mongoBD database, it has an API to retrieve data from the database.
+- Save logs to file
+- Create multi-database compatibility (Prisma)
+- resolve close database connection
 
-### Dependencies and technologies used
+### Hermordr-logger
 
-#### Technologies
+It logs into the colored CMD and also transmits it to a mongoDB database.
+
+## Technologies
+
+- Typescript
 - nodeJS
 - MongoDB
 
-#### Dependencies
-- express: ^4.17.1 (**for sample only**)
-- mongoose:^5.9.7
-
 ## How to use
 
-download the hermodr.js file and import it into your files.
+Run this command to install the hermodr-logger npm
 
-``
-import hermodr from 'YOUR_PATH';
-``
+```
+  npm i hermodr-logger
+```
 
-to log into the console and the database use log types like the one below.
+import the file as below
 
-``
-hermodr.info (MARKER, CONTENT);
-``
+```
+  import Hermodr from "hermodr-logger";
+```
 
-log types:
-- log
-- debug
-- error
-- warn
+how to use
 
-to log only to the database
+```
+  Hermodr.log('message')
+  Hermodr.warn('message')
+  Hermodr.debug('message')
 
-``
-hermodr.db (MARKER, CONTENT);
-``
+  //Functions can take multiple arguments
+  Hermodr.error('message', 'multi message')
+```
 
+existing configurations
 
-### How to use the sample
-I did 2 examples, one with express and the other with restify, feel free to use whatever you think is best!
+```
+  Hermodr.config({
+  stack: false,
+  database: {
+    database: false,
+    database_name: "mongodb",
+    database_uri: process.env.MONGO_URI,
+  },
+})
+```
 
-run to install dependencies 
+Configs
 
-``
-npm install
-``
+- Stack:
+  - default false
+  - Stack is always displayed when .error() or .debug() is used
+- Database:
+  - if database.database is true you also need to set database_name and database_uri
+  - the database name can be one of: "mongodb"
 
-to run the sample
-``
-node .\src\index.js
-``
-**Remember** to change the connection string in the index.js file (line 9 for express-sample or line 15 for restify-sample )
-
-## Images
-
-![Hermodr-browser](Images/browser.png)
+## Image
 
 ![Hermodr-cmd](Images/cmd.png)

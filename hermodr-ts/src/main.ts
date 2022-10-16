@@ -1,11 +1,22 @@
 require("dotenv").config();
-const Hermodr = require("hermodr-logger");
-Hermodr.config({ stack: false });
 import express from "express";
 
 const app = express();
 app.use(express.json());
 
-Hermodr.log("test");
+import Hermodr from "hermodr-logger";
 
-app.listen(3001, () => Hermodr.log("Listening 3000"));
+Hermodr.config({
+  stack: false,
+  database: {
+    database: true,
+    database_name: "mongodb",
+    database_uri: process.env.MONGO_URI,
+  },
+});
+
+Hermodr.debug("express", "express is running");
+Hermodr.warn("express", "express is running");
+Hermodr.error("express", "express is running");
+
+const server = app.listen(3001, () => Hermodr.log("Listening 3000"));
